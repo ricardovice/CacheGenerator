@@ -2,11 +2,11 @@ from distutils.core import setup
 
 version = '1.0'
 
-setup(name='cachegenerator',
+setup(name='CacheGenerator',
       version=version,
       description="CacheGenerator for Django",
       author="Ricardo Santos",
       author_email="ricardo@getgears.com",
-      url="http://ricardo.getgears.com/",
+      url="http://github.com/ricardovice/CacheGenerator/",
       packages = ['cachegenerator']
       )

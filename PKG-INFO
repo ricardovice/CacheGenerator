@@ -1,8 +1,8 @@
 Metadata-Version: 1.0
-Name: cachegenerator
+Name: CacheGenerator
 Version: 1.0
 Summary: CacheGenerator for Django
-Home-page: http://ricardo.getgears.com/
+Home-page: http://github.com/ricardovice/CacheGenerator/
 Author: Ricardo Santos
 Author-email: ricardo@getgears.com
 License: MIT
