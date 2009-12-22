@@ -1,4 +1,5 @@
 import re
+import warnings
 from django.conf import settings
 from django.core.cache import cache
 
@@ -24,11 +25,18 @@ class CacheGeneratorMiddleware(object):
         key_prefix = ''
     
     def process_response(self, request, response):
-        if response.status_code == 200:
+        """
+        If request is a GET and response is a HTTP 200 OK, tries to write
+        the response content to cache
+        """
+        if request.META['REQUEST_METHOD'] == 'GET' and response.status_code == 200:
             for url in self.urls:
                 if url[0].match(request.path):
-                    cache.set('%s%s' % (self.key_prefix, request.META['REQUEST_URI'],),
-                            response.content, url[1])
+                    try:
+                        cache.set('%s%s' % (self.key_prefix, request.META['REQUEST_URI'],), response.content, url[1])
+                    except Exception as error:
+                        # There can be a number of errors, pass silently but log a warning
+                        warnings.warn('Failed to cache "%s": %s' % (request.META['REQUEST_URI'], error,), Warning)
                     break
         return response
 
