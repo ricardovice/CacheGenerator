@@ -1,3 +1,7 @@
+2009-12-22, v1.1
+
+    - Added multi-site support by providing a cache key prefix option.
+
 2009-12-21, v1.0
 
     - Initial version
